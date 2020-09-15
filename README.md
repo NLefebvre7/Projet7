@@ -1,5 +1,5 @@
 # Projet7
 
-docker build . -t akamundu/nodejs-mysql-app
+docker build . -t "gitname"/nodejs-mysql-app
 
 docker-compose up --build
