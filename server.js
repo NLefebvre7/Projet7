@@ -43,8 +43,8 @@ app.get("/testtoken", auth, (req, res) => {
 
 //CREATE from html form  
 app.post('projects/create', function(req, res) {
-    console.log(req.body.user.name);
-    console.log(req.body.user.expectedtime);
+    console.log(req.body.name);
+    console.log(req.body.expectedtime);
 })
 
 
