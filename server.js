@@ -1,24 +1,41 @@
 const express = require("express");
 const app = express();
-const connectDb = require("./src/connection"); //connect mongodb
+
 //const User = require("./src/user.model"); //prend model user depuis user.model.js
+
+//body parser : npm package that is used to parse the incoming request bodies in a middleware
 const bodyParser = require('body-parser')
-let port = 8080;
+app.use(bodyParser.urlencoded({ extended: false }));
+
+
+//connection a la database
+const connectDb = require("./src/connection"); //connect mongodb
 connectDb().then(() => {
     console.log("MongoDb connected");
 });
 
-const project = require('./api/routes/project.route'); // import routes projects
-//bodyparser
-
-
-
-
-app.use('/projects', project);
+//s'affiche ds terminal powershell
+let port = 8080;
 app.listen(port, () => {
-    console.log('Server is up and running on port numner ' + port);
+    console.log('Server running on port: ' + port);
 });
 
+// import routes projects
+const project = require('./api/routes/project.route');
+app.use('/projects', project);
+
+// localhost:8080/ 
+app.get("/", (req, res) => {
+    res.sendFile(__dirname + '/index.html')
+});
+
+
+
+// OLD -----------------------------------------
+// // localhost:8080/quotes
+// app.post('/quotes', (req, res) => {
+//     console.log(req.body)
+// })
 
 // //terminal powershell
 // app.listen(PORT, function() {
@@ -26,18 +43,6 @@ app.listen(port, () => {
 // });
 
 //connection mongodb
-
-// localhost:8080/
-app.get("/", (req, res) => {
-    res.sendFile(__dirname + '/index.html')
-});
-
-// // localhost:8080/quotes
-// app.post('/quotes', (req, res) => {
-//     console.log(req.body)
-// })
-
-
 //test creation user sans utiliser post http verb : 
 
 //recupere les users et leurs infos
