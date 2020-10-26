@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const connectDb = require("./src/connection"); //connect mongodb
-const User = require("./src/user.model"); //prend model user depuis user.model.js
+//const User = require("./src/user.model"); //prend model user depuis user.model.js
 const bodyParser = require('body-parser')
 const PORT = 8080;
 
