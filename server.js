@@ -6,7 +6,7 @@ const PORT = 8080;
 
 // localhost:8080
 app.get("/", (req, res) => {
-    res.send("Hello from Node.js app \n");
+    res.sendFile(__dirname + '/index.html')
 });
 
 //terminal powershell
