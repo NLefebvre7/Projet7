@@ -30,7 +30,7 @@ app.get("/", (req, res) => {
 });
 
 
-
+//CREATE from html form
 app.post('projects/create', function(req, res) {
     console.log(req.body.user.name);
     console.log(req.body.user.expectedtime);
