@@ -5,8 +5,8 @@ const app = express();
 
 //body parser : npm package that is used to parse the incoming request bodies in a middleware
 const bodyParser = require('body-parser')
-app.use(bodyParser.urlencoded({ extended: false }));
-
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 //connection a la database
 const connectDb = require("./src/connection"); //connect mongodb
@@ -31,11 +31,18 @@ app.get("/", (req, res) => {
 
 
 
+app.post('projects/create', function(req, res) {
+    console.log(req.body.user.name);
+    console.log(req.body.user.expectedtime);
+})
+
+
 // OLD -----------------------------------------
-// // localhost:8080/quotes
-// app.post('/quotes', (req, res) => {
-//     console.log(req.body)
-// })
+
+// app.post('projects/create', function(req, res) {
+//     res.send('le name "' + req.body.name + '"et le time ;' + req.body.expectedtime + "on bien ete envoyé.");
+// });
+
 
 // //terminal powershell
 // app.listen(PORT, function() {
