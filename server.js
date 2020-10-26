@@ -7,6 +7,9 @@ const app = express();
 const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+//cookie parser
+// var cookieParser = require('cookie-parser')
+// app.use(cookieParser());
 
 //connection a la database
 const connectDb = require("./src/connection"); //connect mongodb
@@ -14,15 +17,18 @@ connectDb().then(() => {
     console.log("MongoDb connected");
 });
 
-//s'affiche ds terminal powershell
+//s'affiche ds terminal powershell  
 let port = 8080;
 app.listen(port, () => {
     console.log('Server running on port: ' + port);
 });
 
-// import routes projects
+// import routes projects 
 const project = require('./api/routes/project.route');
 app.use('/projects', project);
+//import route user
+const user = require('./api/routes/user.route');
+app.use('/user', user);
 
 // localhost:8080/ 
 app.get("/", (req, res) => {
@@ -30,11 +36,13 @@ app.get("/", (req, res) => {
 });
 
 
-//CREATE from html form
+//CREATE from html form  
 app.post('projects/create', function(req, res) {
     console.log(req.body.user.name);
     console.log(req.body.user.expectedtime);
 })
+
+
 
 
 // OLD -----------------------------------------

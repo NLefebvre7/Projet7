@@ -16,7 +16,10 @@
         "mongoose": "^5.10.10",
         "nodemon": "^2.0.6",
         "save-dev": "0.0.1-security",
-        "body-parser": "^1.19.0"
+        "body-parser": "^1.19.0",
+        "cookie-parser": "^1.4.5",
+        "bcrypt": "^5.0.0",
+        "jsonwebtoken": "^8.5.1"
     },
     "devDependencies": {
         "nodemon": "^2.0.6"
