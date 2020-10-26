@@ -3,7 +3,7 @@ const app = express();
 
 //const User = require("./src/user.model"); //prend model user depuis user.model.js
 
-//body parser : npm package that is used to parse the incoming request bodies in a middleware
+//body parser : npm pazckage that is used to parse the incoming request bodies in a middleware
 const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
