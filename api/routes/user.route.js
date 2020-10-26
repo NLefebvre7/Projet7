@@ -9,6 +9,8 @@ const user_controller = require('../controllers/user.controllers');
 
 //create user
 //router.post('/signup', user_controller.user_create);
+//const auth = require('../middleware/auth');
+
 
 router.get('/test', user_controller.test);
 

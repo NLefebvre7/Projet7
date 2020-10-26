@@ -31,7 +31,12 @@ const user = require('./api/routes/user.route');
 app.use('/user', user);
 
 // localhost:8080/ 
+const auth = require('./api/middleware/auth');
 app.get("/", (req, res) => {
+    res.sendFile(__dirname + '/index.html')
+});
+
+app.get("/testtoken", auth, (req, res) => {
     res.sendFile(__dirname + '/index.html')
 });
 
@@ -41,6 +46,7 @@ app.post('projects/create', function(req, res) {
     console.log(req.body.user.name);
     console.log(req.body.user.expectedtime);
 })
+
 
 
 
