@@ -3,32 +3,39 @@ const app = express();
 const connectDb = require("./src/connection"); //connect mongodb
 //const User = require("./src/user.model"); //prend model user depuis user.model.js
 const bodyParser = require('body-parser')
-const PORT = 8080;
-
-//bodyparser
-app.use(bodyParser.urlencoded({ extended: true }))
-
-
-
-//terminal powershell
-app.listen(PORT, function() {
-    console.log(`Listening on ${PORT}`);
-});
-
-//connection mongodb
+let port = 8080;
 connectDb().then(() => {
     console.log("MongoDb connected");
 });
+
+const project = require('./api/routes/project.route'); // import routes projects
+//bodyparser
+
+
+
+
+app.use('/projects', project);
+app.listen(port, () => {
+    console.log('Server is up and running on port numner ' + port);
+});
+
+
+// //terminal powershell
+// app.listen(PORT, function() {
+//     console.log(`Listening on ${PORT}`);
+// });
+
+//connection mongodb
 
 // localhost:8080/
 app.get("/", (req, res) => {
     res.sendFile(__dirname + '/index.html')
 });
 
-// localhost:8080/quotes
-app.post('/quotes', (req, res) => {
-    console.log(req.body)
-})
+// // localhost:8080/quotes
+// app.post('/quotes', (req, res) => {
+//     console.log(req.body)
+// })
 
 
 //test creation user sans utiliser post http verb : 
