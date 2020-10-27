@@ -1,46 +1,44 @@
-version: "3.2"
+version: "3.3"
 services:
-  nodejs:
-    build: 
-      context: .
-    image: amakundu/nodejs-mysql-app
-    networks:
-      - frontend
-      - backend
-    environment:
-      - MYSQL_HOST=ekip-mysql-app
-      - MYSQL_USER=ekipuser
-      - MYSQL_PASS=ekippass
-      - MYSQL_DB=ekip_db
-    volumes:
-      - ./www/:/var/www/html/
+  web:
+    build: .
     ports:
-      - "30001:8005"
-    container_name: ekip-nodejs-app
-  mysql:
-    image: mysql:5.7
-    networks:
-      - backend
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_USER=ekipuser
-      - MYSQL_PASSWORD=ekippass 
-      - MYSQL_DATABASE=ekip_db
-    container_name: ekip-mysql-app
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin:4.7
+      - "8080:8080"
     depends_on:
-      - mysql
-    networks:
-      - backend
-    ports:
-      - "30002:80"
-    environment:
-      - PMA_HOST=ekip-mysql-app
-      - PMA_PORT= 3306
+      - mongo
     volumes:
-      - /sessions
-    container_name: ekip-phpmyadmin-app
-networks:
-  frontend:
-  backend:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+
+# version: '3.3'
+# services:
+#   node:
+#     container_name: project_node
+#     image: 'node:latest'
+#     working_dir: /usr/src/app
+#     command:
+#       - /bin/sh
+#       - '-c'
+#       - 'npm install && npm start'
+#     ports:
+#       - '8080:8080'
+#     volumes:
+#       - './src:/usr/src/app'
+#     links:
+#       - mongo
+#     networks:
+#       - my-network
+#   mongo:
+#     container_name: project_mongo
+#     image: mongo
+#     ports:
+#       - "27017:27017"
+#     networks:
+#       - my-network
+# networks:
+#   my-network:
+#     driver: bridge

@@ -1,16 +1,27 @@
 {
-    "name": "mysql-db-example",
-    "version": "1.0.0",
+    "name": "projet2",
+    "version": "7.0.0",
     "description": "",
-    "main": "index.js",
+    "main": "server.js",
     "scripts": {
-      "start": "node index.js"
+        "start": "nodemon -L server.js",
+        "dev": "nodemon -L server.js"
     },
+    "keywords": [],
     "author": "",
     "license": "ISC",
     "dependencies": {
-      "express": "^4.16.4",
-      "mysql": "^2.17.1"
+        "-": "0.0.1",
+        "express": "^4.17.1",
+        "mongoose": "^5.10.10",
+        "nodemon": "^2.0.6",
+        "save-dev": "0.0.1-security",
+        "body-parser": "^1.19.0",
+        "cookie-parser": "^1.4.5",
+        "bcrypt": "^5.0.0",
+        "jsonwebtoken": "^8.5.1"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.6"
     }
-  }
-  
+}

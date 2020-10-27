@@ -1,12 +1,7 @@
-FROM node:8
-
+FROM node:latest
 WORKDIR /usr/src/app
-
 COPY package*.json ./
-
-RUN npm install
-
+RUN npm install && npm i -g nodemon && npm install cookie-parser -g
 COPY . .
-
-EXPOSE 8005 
+EXPOSE 8080
 CMD [ "npm", "start" ]
