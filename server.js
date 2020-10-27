@@ -42,8 +42,8 @@ app.get("/signup", (req, res) => {
 });
 
 //createroom
-app.get("/createroom", auth, (req, res) => {
-    res.sendFile(__dirname + 'index.html')
+app.get("/createroom", (req, res) => {
+    res.sendFile(__dirname + '/index.html')
 });
  
 //CREATE from html form  
