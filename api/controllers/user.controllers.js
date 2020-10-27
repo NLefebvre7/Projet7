@@ -105,3 +105,11 @@ exports.login = (req, res, next) => {
         }
     );
 }
+
+exports.user_all = (req, res) => {
+    User.find()
+        .sort({ name: -1 })
+        .then((user) => {
+            res.status(200).send(user);
+        })
+};

@@ -47,7 +47,13 @@ app.post('projects/create', function(req, res) {
     console.log(req.body.expectedtime);
 })
 
-
+// app.get('/logout', auth, function(req, res){
+//     console.log('User Id', req.user._id);
+//     User.findByIdAndRemove(req.user._id, function(err){
+//     if(err) res.send(err);
+//     res.json({ message: 'User Deleted!'});
+//    })
+// });
 
 
 
