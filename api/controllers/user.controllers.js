@@ -15,9 +15,7 @@ exports.signup = (req, res, next) => {
             });
             user.save().then(
                 () => {
-                    res.status(201).json({
-                        message: 'User added successfully!'
-                    });
+                    res.redirect('http://localhost:8080/');
                 }
             ).catch(
                 (error) => {
@@ -87,12 +85,14 @@ exports.login = (req, res, next) => {
                     res.status(200).json({
                         userId: user._id,
                         token: token
-                    });
+                    })
+                    res.redirect('http://localhost:8080/createroom');
+                    ;
                 }
             ).catch(
                 (error) => {
                     res.status(500).json({
-                        error: error
+                        error: new Error('erreur compare')
                     });
                 }
             );
@@ -100,8 +100,16 @@ exports.login = (req, res, next) => {
     ).catch(
         (error) => {
             res.status(500).json({
-                error: error
+                error: new Error('user indefini!')
             });
         }
     );
 }
+
+exports.user_all = (req, res) => {
+    User.find()
+        .sort({ name: -1 })
+        .then((user) => {
+            res.status(200).send(user);
+        })
+};

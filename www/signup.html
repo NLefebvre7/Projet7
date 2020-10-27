@@ -70,17 +70,17 @@ span.psw {
 
 <h2>Inscription</h2>
 
-<form action="http://localhost:8080/" method="GET">
+<form action="http://localhost:8080/user/signup" method="POST">
 
   <div class="container">
     <label for="uname"><b>Nom d'utilisateur</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
+    <input type="text" placeholder="Enter Username" name="username" required>
 
     <label for="psw"><b>Mot de passe</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
+    <input type="password" placeholder="Enter Password" name="password" required>
 
     <label for="psw"><b>Répétez votre mot de passe</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
+    <input type="password" placeholder="Enter Password" name="password2" required>
     
     <a href="https://developer.mozilla.org/fr/" target="_blank">
     <button id="myBtn" type="submit">S'inscrire</button>

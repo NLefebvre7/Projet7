@@ -47,12 +47,14 @@ app.get("/createroom", (req, res) => {
 });
  
 //CREATE from html form  
-app.post('projects/create', function(req, res) {
+app.post('projects/create', function(req, res) { 
     console.log(req.body.name);
-    console.log(req.body.expectedtime);
+    console.log(req.body.expectedtime); 
 })
 
-
+app.get("user/login", (req, res) => {
+    res.sendFile(__dirname + '/www/login.html')
+});
 
 
 

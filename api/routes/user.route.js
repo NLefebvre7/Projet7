@@ -17,4 +17,6 @@ router.get('/test', user_controller.test);
 router.post('/signup', user_controller.signup);
 
 router.get('/login', user_controller.login);
-module.exports = router;
+
+router.get('/all', user_controller.user_all);
+module.exports = router; 
