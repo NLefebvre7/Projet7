@@ -15,7 +15,10 @@ exports.signup = (req, res, next) => {
             });
             user.save().then(
                 () => {
-                    res.redirect('http://localhost:8080/');
+                    res.status(200).json({
+                        userId: user._id,
+                        token: 'token'
+                    });
                 }
             ).catch(
                 (error) => {
@@ -85,9 +88,7 @@ exports.login = (req, res, next) => {
                     res.status(200).json({
                         userId: user._id,
                         token: token
-                    })
-                    res.redirect('http://localhost:8080/createroom');
-                    ;
+                    });
                 }
             ).catch(
                 (error) => {

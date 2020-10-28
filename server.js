@@ -5,17 +5,27 @@ const app = express();
 
 //body parser : npm pazckage that is used to parse the incoming request bodies in a middleware
 const bodyParser = require('body-parser')
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 //cookie parser
 // var cookieParser = require('cookie-parser')
 // app.use(cookieParser());
 
+//passport
+const passport = require('passport');
+const UserModel = require('./api/models/user.model');
 //connection a la database
+const mongoose = require('mongoose');
 const connectDb = require("./src/connection"); //connect mongodb
 connectDb().then(() => {
     console.log("MongoDb connected");
 });
+mongoose.Promise = global.Promise;
+//auth
+// require('./api/auth/auth');
+// const routes = require('./api/routes/user.route');
+
+
 
 //s'affiche ds terminal powershell  
 let port = 8080;
@@ -30,31 +40,50 @@ app.use('/projects', project);
 const user = require('./api/routes/user.route');
 app.use('/user', user);
 
-// localhost:8080/ 
 const auth = require('./api/middleware/auth');
+app.get("/testtoken", auth, (req, res) => {
+    res.sendFile(__dirname + '/index.html')
+});
+
+
+// localhost:8080/ 
 app.get("/", (req, res) => {
     res.sendFile(__dirname + '/www/login.html')
 });
- 
+
 //signup
 app.get("/signup", (req, res) => {
     res.sendFile(__dirname + '/www/signup.html')
 });
 
+//login
+app.get("/login", (req, res) => {
+    res.sendFile(__dirname + '/www/login.html')
+});
+
+
 //createroom
 app.get("/createroom", (req, res) => {
     res.sendFile(__dirname + '/index.html')
 });
- 
+
+
+
 //CREATE from html form  
-app.post('projects/create', function(req, res) { 
+app.post('projects/create', function(req, res) {
     console.log(req.body.name);
-    console.log(req.body.expectedtime); 
+    console.log(req.body.expectedtime);
 })
 
-app.get("user/login", (req, res) => {
-    res.sendFile(__dirname + '/www/login.html')
-});
+// app.post('user/signup', function(req, res) {
+//     console.log(req.body.name);
+//     console.log(req.body.password);
+// })
+
+// app.get('user/login', function(req, res) {
+//     console.log(req.body.name);
+//     console.log(req.body.password);
+// })
 
 
 
