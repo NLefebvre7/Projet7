@@ -21,6 +21,7 @@ router.post('/login', user_controller.login);
 router.get('/all', user_controller.user_all);
 
 router.delete('/:id/delete', user_controller.userdelete);
+router.put('/:id/update', user_controller.user_update);
 router.post('/admin', user_controller.admin);
 // router.post(
 //     '/signup',

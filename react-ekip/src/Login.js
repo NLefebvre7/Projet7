@@ -80,11 +80,11 @@ alert("Identifiants incorrect")
             <div className="wrapper">
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
-                        <label>Username</label>
+                        <label>Nom d'utilisateur</label>
                         <input type="text" value={this.state.username} onChange={this.onChangeUserUsername} className="form-control" />
                     </div>
                     <div className="form-group">
-                        <label>Password</label>
+                        <label>Mot de passe</label>
                         <input type="text" value={this.state.password} onChange={this.onChangeUserPassword} className="form-control" />
                     </div>
                     <div className="form-group">

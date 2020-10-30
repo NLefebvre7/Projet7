@@ -29,7 +29,12 @@ exports.admin = (req, res, next) => {
         }
     );
 }
-
+exports.user_update = function(req, res) {
+    User.findByIdAndUpdate(req.params.id, { $set: req.body }, function(err, project) {
+        if (err) return ("erreur");
+        res.send('user udpated.');
+    });
+};
 exports.userdelete = function(req, res) {
     User.findByIdAndRemove(req.params.id, function(err) {
         if (err) return next(err);

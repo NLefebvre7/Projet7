@@ -42,7 +42,7 @@ mongoose.Promise = global.Promise;
 
 
 //s'affiche ds terminal powershell  
-let port = 8080;
+let port = 8080; 
 app.listen(port, () => {
     console.log('Server running on port: ' + port);
 });
@@ -53,6 +53,9 @@ app.use('/projects', project);
 //import route user
 const user = require('./api/routes/user.route');
 app.use('/user', user);
+//impoort team
+const team = require('./api/routes/team.route');
+app.use('/team', team);
 
 const auth = require('./api/middleware/auth');
 app.get("/testtoken", auth, (req, res) => {
@@ -60,37 +63,37 @@ app.get("/testtoken", auth, (req, res) => {
 });
 
 
-// localhost:8080/ 
-app.get("/", (req, res) => {
-    res.sendFile(__dirname + '/www/login.html')
-});
+// // localhost:8080/ 
+// app.get("/", (req, res) => {
+//     res.sendFile(__dirname + '/www/login.html')
+// });
 
-//signup
-app.get("/signup", (req, res) => {
-    res.sendFile(__dirname + '/www/signup.html')
-});
+// //signup
+// app.get("/signup", (req, res) => {
+//     res.sendFile(__dirname + '/www/signup.html')
+// });
 
-//login
-app.get("/login", (req, res) => {
-    res.sendFile(__dirname + '/www/login.html')
-});
-
-
-//createroom
-app.get("/createroom", (req, res) => {
-    res.sendFile(__dirname + '/index.html')
-});
-
-app.get("/admin",auth, (req, res) => {
-    res.sendFile(__dirname + '/www/admin.html')
-});
+// //login
+// app.get("/login", (req, res) => {
+//     res.sendFile(__dirname + '/www/login.html')
+// });
 
 
-//CREATE from html  form  
-app.post('projects/create', function(req, res) {
-    console.log(req.body.name);
-    console.log(req.body.expectedtime);
-})
+// //createroom
+// app.get("/createroom", (req, res) => {
+//     res.sendFile(__dirname + '/index.html')
+// });
+
+// app.get("/admin",auth, (req, res) => {
+//     res.sendFile(__dirname + '/www/admin.html')
+// });
+
+
+// //CREATE from html  form  
+// app.post('projects/create', function(req, res) {
+//     console.log(req.body.name);
+//     console.log(req.body.expectedtime);
+// })
 
 // app.post('user/signup', function(req, res) {
 //     console.log(req.body.name);

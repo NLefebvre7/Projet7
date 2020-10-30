@@ -4,8 +4,8 @@ function Home() {
    {
     return (
       <div>
-        <h2>HELLO</h2>
-        <p>C'est le home</p>
+        <h2>EKIP APP</h2>
+        <p>Bienvenue sur notre projet EKIP</p>
  
       </div>
     );

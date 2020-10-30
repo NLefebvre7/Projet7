@@ -1,3 +1,5 @@
-# Projet7
-La commmande magique:
-DOCKER-COMPOSE UP
+# EKIP APP
+Clonez le projet puis via votre terminal, a la racine executez :
+`docker-compose up`
+
+Enjoy : http://localhost:3000/

@@ -52,15 +52,15 @@ alert("username already taken")
             <div className="wrapper">
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
-                        <label>Username</label>
+                        <label>Nom d'utilisateur</label>
                         <input type="text" value={this.state.username} onChange={this.onChangeUserUsername} className="form-control" />
                     </div>
                     <div className="form-group">
-                        <label>Password</label>
+                        <label>Mot de passe</label>
                         <input type="text" value={this.state.password} onChange={this.onChangeUserPassword} className="form-control" />
                     </div>
                     <div className="form-group">
-                        <input type="submit" value="Create User" className="btn btn-success btn-block" />
+                        <input type="submit" value="Signup" className="btn btn-success btn-block" />
                     </div>
                 </form>
             </div>
