@@ -11,7 +11,7 @@ import {
 } from "react-router-dom";
 import { Link } from 'react-router-dom';
 
-
+import {Navbar, Nav, NavItem} from 'react-bootstrap';
 
 import Home from "./Home";
 import Signup from './Signup';
@@ -37,6 +37,7 @@ function App() {
       <BrowserRouter>
         <div>
           <div className="header">
+<Navbar bg="dark" variant="dark">
             <NavLink exact activeClassName="active" to="/">Home</NavLink><small>  | </small>
  <NavLink activeClassName="active" to="/Signup">Signup</NavLink><small>   |   </small>
             <NavLink activeClassName="active" to="/Login">Login</NavLink><small>  | </small>
@@ -45,7 +46,7 @@ function App() {
 <NavLink activeClassName="active" to="/Projects">Projects</NavLink><small>   |     </small>
 <NavLink activeClassName="active" to="/Room">ListProjects</NavLink><small>   |   </small>
 <NavLink activeClassName="active" to="/MProject">Manage Project</NavLink><small>    |  </small>
-
+</Navbar>
 
 
 
