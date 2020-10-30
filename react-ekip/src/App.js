@@ -3,52 +3,49 @@ import logo from './logo.svg';
 import axios from 'axios';
 import './App.css';
 import {
-  Route,
-  NavLink,
-  HashRouter
+    Route,
+    NavLink,
+    HashRouter,
+    BrowserRouter,
+    Switch
 } from "react-router-dom";
+import { Link } from 'react-router-dom';
+
+
+
 import Home from "./Home";
+import Signup from './Signup';
+//import Naviguation from './Naviguation';
+import Login from './Login';
+import Projects from './Projects';
+
 const apiUrl = `http://localhost:8080`;
 
-class App extends Component {
-    state = {
-        users: []
-    };
-
-    async createUser() {
-        await axios.get(apiUrl + '/user/signup');
-        this.loadUsers();
-    }
-
-    async loadUsers() {
-        const res = await axios.get(apiUrl + '/user/all');
-        this.setState({
-            users: res.data
-        });
-    }
-
-    componentDidMount() {
-        this.loadUsers();
-    }
-
-  render() {
-    return (
-
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <button onClick={() => this.createUser()}>Create User</button>
-          <p>Users list777:</p>
-          <ul>
-            {this.state.users.map(user => (
-              <li key={user._id}>id: {user._id}</li>
-            ))}
-       </ul> </header> </div>
-
-
-    );
-  }
+function App() {
+  return (
+    <div className="App">
+      <BrowserRouter>
+        <div>
+          <div className="header">
+            <NavLink exact activeClassName="active" to="/">Home</NavLink><small>  | </small>
+            <NavLink activeClassName="active" to="/Login">Login</NavLink><small>  | </small>
+            <NavLink activeClassName="active" to="/Signup">Signup</NavLink><small>      | </small>
+<NavLink activeClassName="active" to="/Projects">projects</NavLink><small>    </small>
+          </div>
+          <div className="content">
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/Signup" component={Signup} />
+              <Route path="/Login" component={Login} />
+<Route path="/Projects" component={Projects} />
+            </Switch>
+          </div>
+        </div>
+      </BrowserRouter>
+    </div>
+  );
 }
+ 
 export default App;
 
 
@@ -59,11 +56,40 @@ export default App;
 
 
 
+// state = {
+//         users: []
+//     };
 
+//     async createUser() {
+//         await axios.get(apiUrl + '/user/signup');
+//         this.loadUsers();
+//     }
 
+//     async loadUsers() {
+//         const res = await axios.get(apiUrl + '/user/all');
+//         this.setState({
+//             users: res.data
+//         });
+//     }
 
+//     componentDidMount() {
+//         this.loadUsers();
+//     }  
 
+ 
+//     return (
+//   <BrowserRouter>
+//         <div>
+//           <Naviguation />
+//             <Switch>
 
+//            <Route path="/" component={Home} exact/>
+//             <Route path="/Somepage" component={Somepage} />
+//             <Route path="/Login" component={Login} />
+//            </Switch>
+//         </div> 
+//       </BrowserRouter>
+//     );
 
 
 //FICHIER DE BASE:

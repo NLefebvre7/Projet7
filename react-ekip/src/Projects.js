@@ -1,15 +1,15 @@
 import React, { Component } from "react";
  
-function Home() {
+function Projects() {
    {
     return (
       <div>
         <h2>HELLO</h2>
-        <p>C'est le home</p>
+        <p>project page</p>
  
       </div>
     );
   }
 }
  
-export default Home;
+export default Projects;

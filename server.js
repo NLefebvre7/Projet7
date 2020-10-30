@@ -81,7 +81,7 @@ app.get("/createroom", (req, res) => {
     res.sendFile(__dirname + '/index.html')
 });
 
-app.get("/admin", (req, res) => {
+app.get("/admin",auth, (req, res) => {
     res.sendFile(__dirname + '/www/admin.html')
 });
 

@@ -114,16 +114,20 @@ exports.login = (req, res, next) => {
                     }
                     const token = jwt.sign({ userId: user._id },
                         'RANDOM_TOKEN_SECRET', { expiresIn: '24h' });
+                    //req.header.authorization = "Bearer " + token;
+                    res.header('Authorization', "Bearer " + token).status(200).json({ userId: user._id, token: token });//.redirect('http://localhost:3000/Login')//json({ userId: user._id, token: token });
+
+
                     //localStorage.setItem('token', token);
-                    req.header.authorization = "Bearer " + token;
-                    res.status(200).redirect('/createroom');
-                    //.json({ userId: user._id, token: token });   headers('Authorization', "Bearer " + token).
+                    //req.header.authorization = "Bearer " + token;
+                    //res.status(200).headers('Authorization', "Bearer " + token);   
+//headers('Authorization', "Bearer " + token).
 
                 }
             ).catch(
                 (error) => {
                     res.status(500).json({
-                        error: new Error('erreur compare')
+                        error: "password invalide"
                     });
                 }
             );
@@ -131,7 +135,7 @@ exports.login = (req, res, next) => {
     ).catch(
         (error) => {
             res.status(500).json({
-                error: new Error('user indefini!')
+                error: "username introuvable"
             });
         }
     );

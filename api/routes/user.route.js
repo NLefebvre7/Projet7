@@ -9,7 +9,7 @@ const user_controller = require('../controllers/user.controllers');
 
 //create user
 //router.post('/signup', user_controller.user_create);
-//const auth = require('../middleware/auth');
+const auth = require('../middleware/auth');
 
 
 router.get('/test', user_controller.test);
@@ -21,6 +21,7 @@ router.post('/login', user_controller.login);
 router.get('/all', user_controller.user_all);
 
 router.delete('/:id/delete', user_controller.userdelete);
+router.post('/admin', user_controller.admin);
 // router.post(
 //     '/signup',
 //     passport.authenticate('signup', { session: false }),
@@ -71,5 +72,5 @@ router.delete('/:id/delete', user_controller.userdelete);
 
 
 
-router.post('/admin', user_controller.admin);
+
 module.exports = router;
