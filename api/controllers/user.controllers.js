@@ -6,24 +6,58 @@ exports.test = function(req, res) {
     res.send('la route des users fonctionne.');
 };
 
-exports.signup = (req, res, next) => {
-    bcrypt.hash(req.body.password, 10).then(
+exports.admin = (req, res, next) => {
+    bcrypt.hash('admin', 10).then(
         (hash) => {
             const user = new User({
-                username: req.body.username,
-                password: hash
+                username: 'admin',
+                password: hash,
+                admin: 1
+
             });
             user.save().then(
                 () => {
-                    res.status(200).json({
-                        userId: user._id,
-                        token: 'token'
-                    });
+                    res.status(200).redirect('/admin');
                 }
             ).catch(
                 (error) => {
                     res.status(500).json({
                         error: error
+                    });
+                }
+            );
+        }
+    );
+}
+exports.user_update = function(req, res) {
+    User.findByIdAndUpdate(req.params.id, { $set: req.body }, function(err, project) {
+        if (err) return ("erreur");
+        res.send('user udpated.');
+    });
+};
+exports.userdelete = function(req, res) {
+    User.findByIdAndRemove(req.params.id, function(err) {
+        if (err) return next(err);
+        res.send('Deleted successfully!');
+    })
+};
+
+exports.signup = (req, res, next) => {
+    bcrypt.hash(req.body.password, 10).then(
+        (hash) => {
+            const user = new User({
+                username: req.body.username,
+                password: hash,
+                admin: 0
+            });
+            user.save().then(
+                () => {
+                    res.status(200).redirect('/login');
+                }
+            ).catch(
+                (error) => {
+                    res.status(500).json({
+                        error: 'nom d_utilisateur non disponible'
                     });
                 }
             );
@@ -85,15 +119,20 @@ exports.login = (req, res, next) => {
                     }
                     const token = jwt.sign({ userId: user._id },
                         'RANDOM_TOKEN_SECRET', { expiresIn: '24h' });
-                    res.status(200).json({
-                        userId: user._id,
-                        token: token
-                    });
+                    //req.header.authorization = "Bearer " + token;
+                    res.header('Authorization', "Bearer " + token).status(200).json({ userId: user._id, token: token });//.redirect('http://localhost:3000/Login')//json({ userId: user._id, token: token });
+
+
+                    //localStorage.setItem('token', token);
+                    //req.header.authorization = "Bearer " + token;
+                    //res.status(200).headers('Authorization', "Bearer " + token);   
+//headers('Authorization', "Bearer " + token).
+
                 }
             ).catch(
                 (error) => {
                     res.status(500).json({
-                        error: new Error('erreur compare')
+                        error: "password invalide"
                     });
                 }
             );
@@ -101,7 +140,7 @@ exports.login = (req, res, next) => {
     ).catch(
         (error) => {
             res.status(500).json({
-                error: new Error('user indefini!')
+                error: "username introuvable"
             });
         }
     );

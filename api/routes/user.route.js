@@ -9,18 +9,20 @@ const user_controller = require('../controllers/user.controllers');
 
 //create user
 //router.post('/signup', user_controller.user_create);
-//const auth = require('../middleware/auth');
+const auth = require('../middleware/auth');
 
 
 router.get('/test', user_controller.test);
 
 router.post('/signup', user_controller.signup);
 
-router.get('/login', user_controller.login);
+router.post('/login', user_controller.login);
 
 router.get('/all', user_controller.user_all);
 
-
+router.delete('/:id/delete', user_controller.userdelete);
+router.put('/:id/update', user_controller.user_update);
+router.post('/admin', user_controller.admin);
 // router.post(
 //     '/signup',
 //     passport.authenticate('signup', { session: false }),
