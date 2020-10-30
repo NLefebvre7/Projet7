@@ -1,0 +1,53 @@
+version: "3.3"
+services:
+  web:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongo
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+  react:
+    build: ./react-ekip
+    ports:
+      - '3000:3000'
+    depends_on:
+      - web
+    volumes:
+      - ./react-ekip/src/:/usr/src/app/src
+    stdin_open: true
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+
+# version: '3.3'
+# services:
+#   node:
+#     container_name: project_node
+#     image: 'node:latest'
+#     working_dir: /usr/src/app
+#     command:
+#       - /bin/sh
+#       - '-c'
+#       - 'npm install && npm start'
+#     ports:
+#       - '8080:8080'
+#     volumes:
+#       - './src:/usr/src/app'
+#     links:
+#       - mongo
+#     networks:
+#       - my-network
+#   mongo:
+#     container_name: project_mongo
+#     image: mongo
+#     ports:
+#       - "27017:27017"
+#     networks:
+#       - my-network
+# networks:
+#   my-network:
+#     driver: bridge
