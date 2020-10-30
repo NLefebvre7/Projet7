@@ -52,7 +52,7 @@ exports.signup = (req, res, next) => {
             });
             user.save().then(
                 () => {
-                    res.status(200).redirect('/login');
+                    res.status(200);
                 }
             ).catch(
                 (error) => {
@@ -61,7 +61,7 @@ exports.signup = (req, res, next) => {
                     });
                 }
             );
-        }
+        } 
     );
 };
 

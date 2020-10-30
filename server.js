@@ -59,7 +59,7 @@ app.use('/team', team);
 
 const auth = require('./api/middleware/auth');
 app.get("/testtoken", auth, (req, res) => {
-    res.sendFile(__dirname + '/index.html')
+    res.sendFile(__dirname + '/index.html') 
 });
 
 

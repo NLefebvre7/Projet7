@@ -36,8 +36,9 @@ constructor(props) {
         axios.post('http://localhost:8080/user/signup', userObject)
             .then(function (response) {
 alert("Account created, Click OK will redirect on Login page")
-                window.location = "http://localhost:3000/Login";
-            }).catch((error) => {
+                window.location = "http://localhost:3000/Login"; 
+            })
+.catch((error) => {
 alert("username already taken")
                 console.log(error)
             });
